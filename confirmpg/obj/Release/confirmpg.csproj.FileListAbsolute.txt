@@ -1,0 +1,6 @@
+C:\Users\rei\Desktop\NameDevider\confirmpg\bin\Release\confirmpg.exe.config
+C:\Users\rei\Desktop\NameDevider\confirmpg\bin\Release\confirmpg.exe
+C:\Users\rei\Desktop\NameDevider\confirmpg\bin\Release\confirmpg.pdb
+C:\Users\rei\Desktop\NameDevider\confirmpg\obj\Release\confirmpg.csprojResolveAssemblyReference.cache
+C:\Users\rei\Desktop\NameDevider\confirmpg\obj\Release\confirmpg.exe
+C:\Users\rei\Desktop\NameDevider\confirmpg\obj\Release\confirmpg.pdb

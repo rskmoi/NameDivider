@@ -1,0 +1,27 @@
+c:\users\rei\documents\visual studio 2015\Projects\confirmpg\confirmpg\bin\Debug\confirmpg.exe.config
+c:\users\rei\documents\visual studio 2015\Projects\confirmpg\confirmpg\bin\Debug\confirmpg.exe
+c:\users\rei\documents\visual studio 2015\Projects\confirmpg\confirmpg\bin\Debug\confirmpg.pdb
+c:\users\rei\documents\visual studio 2015\Projects\confirmpg\confirmpg\obj\Debug\confirmpg.csprojResolveAssemblyReference.cache
+c:\users\rei\documents\visual studio 2015\Projects\confirmpg\confirmpg\obj\Debug\confirmpg.exe
+c:\users\rei\documents\visual studio 2015\Projects\confirmpg\confirmpg\obj\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\confirmpg_studying\confirmpg\bin\Debug\confirmpg.exe.config
+C:\Users\rei\Desktop\confirmpg_studying\confirmpg\obj\Debug\confirmpg.exe
+C:\Users\rei\Desktop\confirmpg_studying\confirmpg\obj\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\confirmpg_studying\confirmpg\bin\Debug\confirmpg.exe
+C:\Users\rei\Desktop\confirmpg_studying\confirmpg\bin\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\confirmpg_studying\confirmpg\obj\Debug\confirmpg.csprojResolveAssemblyReference.cache
+C:\Users\rei\Desktop\DevideName\confirmpg\bin\Debug\confirmpg.exe.config
+C:\Users\rei\Desktop\DevideName\confirmpg\obj\Debug\confirmpg.exe
+C:\Users\rei\Desktop\DevideName\confirmpg\obj\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\DevideName\confirmpg\bin\Debug\confirmpg.exe
+C:\Users\rei\Desktop\DevideName\confirmpg\bin\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\DevideName\confirmpg\obj\Debug\confirmpg.csprojResolveAssemblyReference.cache
+C:\Users\rei\Desktop\DevideName - コピー\confirmpg\bin\Debug\confirmpg.exe.config
+C:\Users\rei\Desktop\DevideName - コピー\confirmpg\obj\Debug\confirmpg.exe
+C:\Users\rei\Desktop\DevideName - コピー\confirmpg\obj\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\DevideName - コピー\confirmpg\obj\Debug\confirmpg.csprojResolveAssemblyReference.cache
+C:\Users\rei\Desktop\DevideName - コピー\confirmpg\bin\Debug\confirmpg.exe
+C:\Users\rei\Desktop\DevideName - コピー\confirmpg\bin\Debug\confirmpg.pdb
+C:\Users\rei\Desktop\NameDevider\confirmpg\bin\Debug\confirmpg.exe.config
+C:\Users\rei\Desktop\NameDevider\confirmpg\obj\Debug\confirmpg.exe
+C:\Users\rei\Desktop\NameDevider\confirmpg\obj\Debug\confirmpg.pdb
