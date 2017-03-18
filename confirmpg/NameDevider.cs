@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace confirmpg
 {
-    public class NameDevider
+    public class NameDivider
     {
         public List<Kanji> kanjiList { get; set; }
 
-        public NameDevider(List<Kanji> mainKanjiList)
+        public NameDivider(List<Kanji> mainKanjiList)
         {
             kanjiList = mainKanjiList;
         }

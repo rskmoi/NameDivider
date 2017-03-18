@@ -29,13 +29,13 @@ namespace confirmpg
                 {
                     DoTest();
                 }
-                else if (firstCommand == "devide")
+                else if (firstCommand == "divide")
                 {
-                    DevideNameFromText();
+                    DivideNameFromText();
                 }
-                else if (firstCommand == "devide -c")
+                else if (firstCommand == "divide -c")
                 {
-                    DevideNameFromTextOrderByCertaintyFactor();
+                    DivideNameFromTextOrderByCertaintyFactor();
                 }
                 else if (firstCommand == "mklist")
                 {
@@ -64,8 +64,8 @@ namespace confirmpg
         private static void Help()
         {
             Console.WriteLine("test:試しにコンソール上で姓名分離");
-            Console.WriteLine("devide:テキストファイルにある名前を姓名分離");
-            Console.WriteLine("devide -c:テキストファイルにある名前を姓名分離して確信度が低い順にソート");
+            Console.WriteLine("divide:テキストファイルにある名前を姓名分離");
+            Console.WriteLine("divide -c:テキストファイルにある名前を姓名分離して確信度が低い順にソート");
             Console.WriteLine("help:ヘルプ");
             Console.WriteLine("quit:アプリケーションの終了");
         }
@@ -73,7 +73,7 @@ namespace confirmpg
         static bool activateTestState = true;
         public static void DoTest()
         {
-            NameDevider nameDevider = new NameDevider(kanjiList);
+            NameDivider nameDivider = new NameDivider(kanjiList);
             activateTestState = true;
             while (activateTestState)
             {
@@ -89,9 +89,9 @@ namespace confirmpg
                 }
                 else
                 {
-                    if (nameDevider.getNameCandidate(name) != null)
+                    if (nameDivider.getNameCandidate(name) != null)
                     {
-                        Console.WriteLine(nameDevider.getNameCandidate(name)[0].Sentence);
+                        Console.WriteLine(nameDivider.getNameCandidate(name)[0].Sentence);
                     }
                     else
                     {
@@ -103,7 +103,7 @@ namespace confirmpg
 
         public static void CheckAccuracy()
         {
-            NameDevider nameDevider = new NameDevider(kanjiList);
+            NameDivider nameDivider = new NameDivider(kanjiList);
             Console.WriteLine("ファイルのパス名を入力してください。");
             Console.Write(">");
             string path = Console.ReadLine();
@@ -126,25 +126,25 @@ namespace confirmpg
                 while ((line = sr.ReadLine()) != null)
                 {
                     string noSpaceName = line.Replace(" ", "");
-                    if (nameDevider.getNameCandidate(noSpaceName) == null)
+                    if (nameDivider.getNameCandidate(noSpaceName) == null)
                     {
                         Console.WriteLine($"{nameCount + 1}件目の名前が正しくありません。エラーが発生したため処理が完了されませんでした。");
                         return;
                     }
 
-                    string devidedName = nameDevider.getNameCandidate(noSpaceName)[0].Sentence;
-                    if (line == devidedName )
+                    string dividedName = nameDivider.getNameCandidate(noSpaceName)[0].Sentence;
+                    if (line == dividedName )
                     {
-                        sb.AppendLine($"true,{devidedName}");
+                        sb.AppendLine($"true,{dividedName}");
                     }
                     else
                     {
-                        sb.AppendLine($"false,{devidedName}");
+                        sb.AppendLine($"false,{dividedName}");
                         mistakeCount++;
                     }
                     nameCount++;
                 }
-                using (StreamWriter sw = new StreamWriter($".\\NameDevideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
+                using (StreamWriter sw = new StreamWriter($".\\NameDivideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
                 {
                     sw.WriteLine(sb.ToString());
                 }
@@ -154,9 +154,9 @@ namespace confirmpg
 
 
         }
-        public static void DevideNameFromText()
+        public static void DivideNameFromText()
         {
-            NameDevider nameDevider = new NameDevider(kanjiList);
+            NameDivider nameDivider = new NameDivider(kanjiList);
             Console.WriteLine("ファイルのパス名を入力してください。");
             Console.Write(">");
             string path = Console.ReadLine();
@@ -178,9 +178,9 @@ namespace confirmpg
             {
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (nameDevider.getNameCandidate(line) != null)
+                    if (nameDivider.getNameCandidate(line) != null)
                     {
-                        sb.AppendLine(nameDevider.getNameCandidate(line)[0].Sentence);
+                        sb.AppendLine(nameDivider.getNameCandidate(line)[0].Sentence);
                     }
                     else
                     {
@@ -189,7 +189,7 @@ namespace confirmpg
                     }
                     nameCount++;
                 }
-                using (StreamWriter sw = new StreamWriter($".\\NameDevideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
+                using (StreamWriter sw = new StreamWriter($".\\NameDivideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
                 {
                     sw.WriteLine(sb.ToString());
                 }
@@ -197,9 +197,9 @@ namespace confirmpg
             Console.WriteLine($"{nameCount}件の処理が正常に終了しました。");
         }
 
-        public static void DevideNameFromTextOrderByCertaintyFactor()
+        public static void DivideNameFromTextOrderByCertaintyFactor()
         {
-            NameDevider nameDevider = new NameDevider(kanjiList);
+            NameDivider nameDivider = new NameDivider(kanjiList);
             NWCFList = new List<NameWithCertainlyFactor>();
             Console.WriteLine("ファイルのパス名を入力してください。");
             Console.Write(">");
@@ -222,9 +222,9 @@ namespace confirmpg
             {
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (nameDevider.getNameCandidate(line) != null)
+                    if (nameDivider.getNameCandidate(line) != null)
                     {
-                        setCertainlyFactor(nameDevider.getNameCandidate(line), nameCount + 1);
+                        setCertainlyFactor(nameDivider.getNameCandidate(line), nameCount + 1);
                     }
                     else
                     {
@@ -235,7 +235,7 @@ namespace confirmpg
                 }
 
                 NWCFList.Sort((a, b) => (int)(a.CertainlyFactor * 100000) - (int)(b.CertainlyFactor * 100000));
-                using (StreamWriter sw = new StreamWriter($".\\NameDevideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
+                using (StreamWriter sw = new StreamWriter($".\\NameDivideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
                 {
                     foreach (NameWithCertainlyFactor nwcf in NWCFList)
                     {
