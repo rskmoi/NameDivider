@@ -9,14 +9,13 @@ namespace confirmpg
 {
     public class Program
     {
-        public static List<Kanji> kanjiList { get; set; }
-        public static List<NameWithCertainlyFactor> NWCFList { get; set; }
-        public static StringBuilder StudySb = new StringBuilder();
+        public static List<Kanji> KanjiList { get; set; }
+        public static List<NameWithCertainlyFactor> NameListWithCertainlyFactor { get; set; }
         public static double Coeffcient { get; set; }
 
         public static void Main(string[] args)
         {
-            kanjiList = readKanjiList();
+            KanjiList = ReadKanjiList();
             Console.WriteLine("+++++姓名分離くん START+++++");
             Help();
             bool IsActive = true;
@@ -40,7 +39,7 @@ namespace confirmpg
                 else if (firstCommand == "mklist")
                 {
                     KanjiListMaker.GenerateKanjiList();
-                    readKanjiList();
+                    ReadKanjiList();
                 }
                 else if(firstCommand == "accuracy")
                 {
@@ -56,7 +55,7 @@ namespace confirmpg
                 }
                 else
                 {
-                    Console.WriteLine("not command");
+                    Console.WriteLine("command not found");
                 }
             }
         }
@@ -67,22 +66,24 @@ namespace confirmpg
             Console.WriteLine("divide:テキストファイルにある名前を姓名分離");
             Console.WriteLine("divide -c:テキストファイルにある名前を姓名分離して確信度が低い順にソート");
             Console.WriteLine("help:ヘルプ");
+            Console.WriteLine("mklist:【開発者用コマンド】漢字リストを再作成する");
+            Console.WriteLine("accuracy:【開発者用コマンド】スペースが入っている名前を入力として正解率を確認する");
             Console.WriteLine("quit:アプリケーションの終了");
         }
 
-        static bool activateTestState = true;
+        static bool isTest = true;
         public static void DoTest()
         {
-            NameDivider nameDivider = new NameDivider(kanjiList);
-            activateTestState = true;
-            while (activateTestState)
+            NameDivideService nameDivider = new NameDivideService(KanjiList);
+            isTest = true;
+            while (isTest)
             {
                 Console.WriteLine("お試しモードです。名前をコンソールに入力してください。");
                 Console.Write(">");
                 string name = Console.ReadLine();
                 if (name == "quit")
                 {
-                    activateTestState = false;
+                    isTest = false;
                 }
                 else if (name == string.Empty)
                 {
@@ -103,7 +104,7 @@ namespace confirmpg
 
         public static void CheckAccuracy()
         {
-            NameDivider nameDivider = new NameDivider(kanjiList);
+            NameDivideService nameDivider = new NameDivideService(KanjiList);
             Console.WriteLine("ファイルのパス名を入力してください。");
             Console.Write(">");
             string path = Console.ReadLine();
@@ -156,7 +157,7 @@ namespace confirmpg
         }
         public static void DivideNameFromText()
         {
-            NameDivider nameDivider = new NameDivider(kanjiList);
+            NameDivideService nameDivider = new NameDivideService(KanjiList);
             Console.WriteLine("ファイルのパス名を入力してください。");
             Console.Write(">");
             string path = Console.ReadLine();
@@ -199,8 +200,8 @@ namespace confirmpg
 
         public static void DivideNameFromTextOrderByCertaintyFactor()
         {
-            NameDivider nameDivider = new NameDivider(kanjiList);
-            NWCFList = new List<NameWithCertainlyFactor>();
+            NameDivideService nameDivider = new NameDivideService(KanjiList);
+            NameListWithCertainlyFactor = new List<NameWithCertainlyFactor>();
             Console.WriteLine("ファイルのパス名を入力してください。");
             Console.Write(">");
             string path = Console.ReadLine();
@@ -224,7 +225,7 @@ namespace confirmpg
                 {
                     if (nameDivider.getNameCandidate(line) != null)
                     {
-                        setCertainlyFactor(nameDivider.getNameCandidate(line), nameCount + 1);
+                        SetCertainlyFactor(nameDivider.getNameCandidate(line), nameCount + 1);
                     }
                     else
                     {
@@ -234,10 +235,10 @@ namespace confirmpg
                     nameCount++;
                 }
 
-                NWCFList.Sort((a, b) => (int)(a.CertainlyFactor * 100000) - (int)(b.CertainlyFactor * 100000));
+                NameListWithCertainlyFactor.Sort((a, b) => (int)(a.CertainlyFactor * 100000) - (int)(b.CertainlyFactor * 100000));
                 using (StreamWriter sw = new StreamWriter($".\\NameDivideResult{System.DateTime.Now.ToString("MMddhhmmss")}.txt"))
                 {
-                    foreach (NameWithCertainlyFactor nwcf in NWCFList)
+                    foreach (NameWithCertainlyFactor nwcf in NameListWithCertainlyFactor)
                     {
                         sw.WriteLine(nwcf.ToString());
                     }
@@ -246,7 +247,7 @@ namespace confirmpg
             Console.WriteLine($"{nameCount}件の処理が正常に終了しました。");
         }
 
-        private static void setCertainlyFactor(List<Candidate> forsortList, int id)
+        private static void SetCertainlyFactor(List<Candidate> forsortList, int id)
         {
             NameWithCertainlyFactor nameWithCertainlyFactor;
             if (forsortList.Count() == 1)
@@ -258,10 +259,10 @@ namespace confirmpg
                 double certainFactor = forsortList[0].TotalProbability - forsortList[1].TotalProbability;
                 nameWithCertainlyFactor = new NameWithCertainlyFactor(id, forsortList[0].Sentence, certainFactor);
             }
-            NWCFList.Add(nameWithCertainlyFactor);
+            NameListWithCertainlyFactor.Add(nameWithCertainlyFactor);
         }
 
-        private static List<Kanji> readKanjiList()
+        private static List<Kanji> ReadKanjiList()
         {
             using (StreamReader sr = new StreamReader(@".\\KanjiList.txt", Encoding.UTF8))
             {

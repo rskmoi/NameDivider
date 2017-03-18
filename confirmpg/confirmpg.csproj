@@ -47,7 +47,7 @@
     <Compile Include="Kanji.cs" />
     <Compile Include="KanjiForCount.cs" />
     <Compile Include="KanjiListMaker.cs" />
-    <Compile Include="NameDevider.cs" />
+    <Compile Include="NameDivider.cs" />
     <Compile Include="NameFormatUtil.cs" />
     <Compile Include="NameWithCertainlyFactor.cs" />
     <Compile Include="Program.cs" />
