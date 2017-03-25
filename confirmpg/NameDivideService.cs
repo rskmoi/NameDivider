@@ -14,7 +14,9 @@ namespace confirmpg
         {
             kanjiList = mainKanjiList;
         }
-        //区切れる個所すべてで区切った処理済みの名前を返すメソッド
+        /// <summary>
+        /// 区切れる個所すべてで区切った処理済みの名前を返すメソッド
+        /// </summary>
         public List<Candidate> getNameCandidate(string fullName)
         {
             //不正な名前だったらnullを返す
@@ -23,11 +25,11 @@ namespace confirmpg
                 return null;
             }
             //漢字かな（カナ）混合だったら確信度1で即決
-            int mixingPoint = NameFormatUtil.isMixingKana(fullName);
-            if (mixingPoint != 0)
+            int kanaSwitchPoint = NameFormatUtil.isMixingKana(fullName);
+            if (kanaSwitchPoint != 0)
             {
-                string myouji = fullName.Substring(0, mixingPoint);
-                string namae = fullName.Substring(mixingPoint);
+                string myouji = fullName.Substring(0, kanaSwitchPoint);
+                string namae = fullName.Substring(kanaSwitchPoint);
                 return new List<Candidate>() { new Candidate(1, $"{myouji} {namae}") };
             }
             //以下、漢字のみで構成された名前の処理
