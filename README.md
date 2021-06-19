@@ -1,4 +1,15 @@
 # NameDivider
+
+++++++++++お知らせ++++++++++
+
+2020年11月にPythonパッケージにしています。
+
+プログラミングができる方にはこちらをおすすめしています。
+
+https://github.com/rskmoi/namedivider-python
+
+++++++++++++++++++++++++++++
+
 姓名分割マシーンをてきとうにつくりました  
 CloneOrDownload→ZIPをダウンロード→  
 解凍してNameDevider/confirmpg/bin/Release/confirmpg.exeをダブルクリックしてみてください 
